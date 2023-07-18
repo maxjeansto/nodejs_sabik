@@ -1,0 +1,18 @@
+{
+  "name": "nodesabik",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "fs": "^0.0.1-security",
+    "yargs": "^13.2.2"
+  }
+}
