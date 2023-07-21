@@ -43,6 +43,7 @@ yargs.command({
         modifyTitle(argv.oldTitle, argv.newTitle);
     }
 });
+
 // Supprimer une note dans le fichier notes.json grace a son titre
 // Parametre: title (obligatoire)
 yargs.command({
@@ -60,6 +61,7 @@ yargs.command({
     }
 });
 
+// Afficher la liste des notes
 yargs.command({
     command: "list",
     describe: "List all notes",
