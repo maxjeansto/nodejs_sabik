@@ -1,11 +1,11 @@
 import yargs from "yargs";
+import { addTextToFile, modifyTitle, removeNote, listNotes } from "./utils.js";
 
-import { addTextToFile, modifyTitle } from "./utils.js";
-
-// Add a command to yargs to add a note to the file
+// Ajout d une note dans le fichier notes.json
+// parametres: title, body (les deux sont obligatoires)
 yargs.command({
-    command: "addTextToFile",
-    describe: "Add title and body to your note",
+    command: "add",
+    describe: "Add a new note",
     builder: {
         title: {
             describe: "Note title",
@@ -18,18 +18,15 @@ yargs.command({
             type: "string"
         }
     },
-    // It takes the text as a parameter
-    handler: (arg) => {
-        const title = 'Title: ' + arg.title;
-        const body = 'Body: ' + arg.body;
-        const note = title + "\n" + body;
-        addTextToFile(note);
+    handler(argv) {
+        addTextToFile(argv.title, argv.body);
     }
 });
-// Add a command to yargs to modify the title of the note in the file 
+// Modifier le titre d une note dans le fichier notes.json
+// Parametres: oldTitle, newTitle (les deux sont obligatoires)
 yargs.command({
-    command: "modifyTitle",
-    describe: "Modify the title of your note",
+    command: "modify",
+    describe: "Modify an existing note's title",
     builder: {
         oldTitle: {
             describe: "Old note title",
@@ -42,9 +39,32 @@ yargs.command({
             type: "string"
         }
     },
-    //  It takes the old title and the new title as parameters
-    handler: (arg) => {
-        modifyTitle(arg.oldTitle, arg.newTitle);
+    handler(argv) {
+        modifyTitle(argv.oldTitle, argv.newTitle);
+    }
+});
+// Supprimer une note dans le fichier notes.json grace a son titre
+// Parametre: title (obligatoire)
+yargs.command({
+    command: "remove",
+    describe: "Remove a note",
+    builder: {
+        title: {
+            describe: "Note title",
+            demandOption: true,
+            type: "string"
+        }
+    },
+    handler(argv) {
+        removeNote(argv.title);
+    }
+});
+
+yargs.command({
+    command: "list",
+    describe: "List all notes",
+    handler() {
+        listNotes();
     }
 });
 
