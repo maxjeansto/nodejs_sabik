@@ -1,5 +1,13 @@
 import yargs from "yargs";
 import { addTextToFile, modifyTitle, removeNote, listNotes } from "./utils.js";
+import dotenv from 'dotenv';
+const envPath = `./.env/${process.env.NODE_ENV}.env`;
+
+dotenv.config({ path: envPath });
+
+
+console.log(process.env.NODE_ENV);
+
 
 // Ajout d une note dans le fichier notes.json
 // parametres: title, body (les deux sont obligatoires)
